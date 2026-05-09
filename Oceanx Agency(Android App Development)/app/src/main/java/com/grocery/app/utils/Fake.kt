@@ -1,4 +1,4 @@
-package com.grocery.app.data
+package com.grocery.app.utils
 
 import com.grocery.app.data.Product
 
