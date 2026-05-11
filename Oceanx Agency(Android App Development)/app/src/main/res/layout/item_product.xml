@@ -10,9 +10,10 @@
 
     <ImageView
         android:id="@+id/imgProduct"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:scaleType="centerCrop"/>
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/tvName"
@@ -34,12 +35,12 @@
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:text="Add"
         android:backgroundTint="#2E7D32"
         android:textColor="#fff"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:textSize="12sp"/>
+        android:layout_marginTop="10dp"
+        android:textSize="13sp"
+        android:cornerRadius="24dp"/>
 
 </LinearLayout>
