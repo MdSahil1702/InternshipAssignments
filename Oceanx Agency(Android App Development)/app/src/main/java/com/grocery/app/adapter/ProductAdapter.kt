@@ -25,7 +25,7 @@ class ProductAdapter(
         val item = list[i]
         h.b.tvName.text = item.name
         h.b.tvPrice.text = "₹${item.price}"
-        Glide.with(h.b.root.context).load(item.img).into(h.b.imgProduct)
+        h.b.imgProduct.setImageResource(item.img)
         h.b.btnAdd.setOnClickListener { onAdd(item) }
     }
 
