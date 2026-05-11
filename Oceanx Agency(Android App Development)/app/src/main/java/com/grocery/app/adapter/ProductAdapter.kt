@@ -1,5 +1,6 @@
 package com.grocery.app.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,12 @@ class ProductAdapter(
         val item = list[i]
         h.b.tvName.text = item.name
         h.b.tvPrice.text = "₹${item.price}"
+
+        //scaling down large images to avoid canvas crash
+        val opts = BitmapFactory.Options().apply{
+            inSampleSize=4
+        }
+        
         h.b.imgProduct.setImageResource(item.img)
         h.b.btnAdd.setOnClickListener { onAdd(item) }
     }
