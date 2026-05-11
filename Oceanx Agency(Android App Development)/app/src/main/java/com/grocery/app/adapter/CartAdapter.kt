@@ -26,7 +26,7 @@ class CartAdapter(
         h.b.tvName.text  = c.product.name
         h.b.tvPrice.text = "₹${c.product.price * c.qty}"
         h.b.tvQty.text   = "${c.qty}"
-        Glide.with(h.b.root).load(c.product.img).into(h.b.img)
+        h.b.img.setImageResource(c.product.img)
         h.b.btnInc.setOnClickListener { onInc(c.product.id) }
         h.b.btnDec.setOnClickListener { onDec(c.product.id) }
         h.b.btnRem.setOnClickListener { onRem(c.product.id) }
