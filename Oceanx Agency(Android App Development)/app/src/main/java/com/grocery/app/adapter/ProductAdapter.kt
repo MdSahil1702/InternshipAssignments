@@ -4,7 +4,6 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.grocery.app.data.Product
 import com.grocery.app.databinding.ItemProductBinding
 
@@ -27,12 +26,13 @@ class ProductAdapter(
         h.b.tvName.text = item.name
         h.b.tvPrice.text = "₹${item.price}"
 
-        //scaling down large images to avoid canvas crash
-        val opts = BitmapFactory.Options().apply{
-            inSampleSize=4
+        // scale down large images to avoid canvas crash
+        val opts = BitmapFactory.Options().apply {
+            inSampleSize = 4
         }
-        
-        h.b.imgProduct.setImageResource(item.img)
+        val bmp = BitmapFactory.decodeResource(h.b.root.context.resources, item.img, opts)
+        h.b.imgProduct.setImageBitmap(bmp)
+
         h.b.btnAdd.setOnClickListener { onAdd(item) }
     }
 
