@@ -1,48 +1,32 @@
 package com.grocery.app.adapter
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.grocery.app.data.CartItem
-import com.grocery.app.databinding.ItemCartBinding
+import com.grocery.app.databinding.ItemCategoryBinding
 
-class CartAdapter(
-    private var list: List<CartItem>,
-    private val onInc: (Int) -> Unit,
-    private val onDec: (Int) -> Unit,
-    private val onRem: (Int) -> Unit
-) : RecyclerView.Adapter<CartAdapter.VH>() {
+class CategoryAdapter(
+    private val cats: List<String>,
+    private val onClick: (String) -> Unit
+) : RecyclerView.Adapter<CategoryAdapter.VH>() {
 
-    inner class VH(val b: ItemCartBinding) : RecyclerView.ViewHolder(b.root)
+    private var sel = "All"
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val b = ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VH(b)
-    }
+    inner class VH(val b: ItemCategoryBinding) : RecyclerView.ViewHolder(b.root)
 
-    override fun getItemCount() = list.size
+    override fun onCreateViewHolder(p: ViewGroup, t: Int) =
+        VH(ItemCategoryBinding.inflate(LayoutInflater.from(p.context), p, false))
+
+    override fun getItemCount() = cats.size
 
     override fun onBindViewHolder(h: VH, i: Int) {
-        val c = list[i]
-        h.b.tvName.text = c.product.name
-        h.b.tvPrice.text = "₹${c.product.price * c.qty}"
-        h.b.tvQty.text = "${c.qty}"
-
-        // scale down large images to avoid canvas crash
-        val opts = BitmapFactory.Options().apply {
-            inSampleSize = 4
+        val cat = cats[i]
+        h.b.tvCat.text = cat
+        h.b.tvCat.isSelected = cat == sel
+        h.b.root.setOnClickListener {
+            sel = cat
+            notifyDataSetChanged()
+            onClick(cat)
         }
-        val bmp = BitmapFactory.decodeResource(h.b.root.context.resources, c.product.img, opts)
-        h.b.img.setImageBitmap(bmp)
-
-        h.b.btnInc.setOnClickListener { onInc(c.product.id) }
-        h.b.btnDec.setOnClickListener { onDec(c.product.id) }
-        h.b.btnRem.setOnClickListener { onRem(c.product.id) }
-    }
-
-    fun update(data: List<CartItem>) {
-        list = data
-        notifyDataSetChanged()
     }
 }
