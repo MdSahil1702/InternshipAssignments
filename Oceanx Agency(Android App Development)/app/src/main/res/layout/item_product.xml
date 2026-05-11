@@ -35,12 +35,13 @@
     <Button
         android:id="@+id/btnAdd"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:text="Add"
         android:backgroundTint="#2E7D32"
         android:textColor="#fff"
         android:layout_marginTop="10dp"
         android:textSize="13sp"
-        android:cornerRadius="24dp"/>
+        android:cornerRadius="24dp"
+        android:minHeight="48dp"/>
 
 </LinearLayout>
