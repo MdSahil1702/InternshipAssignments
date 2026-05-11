@@ -6,8 +6,8 @@
     <application
         android:allowBackup="true"
         android:label="GroceryApp"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/iconofApp"
+        android:roundIcon="@mipmap/iconofApp"
         android:theme="@style/Theme.GroceryApp">
 
         <activity android:name=".ui.LoginActivity" android:exported="true">
