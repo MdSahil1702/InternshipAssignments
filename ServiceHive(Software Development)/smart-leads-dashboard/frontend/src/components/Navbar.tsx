@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-green-700 text-white px-6 py-4 flex justify-between items-center shadow">
-      <h1 className="text-xl font-bold">Smart Leads Dashboard</h1>
+      <h1 className="text-xl font-bold">GigFlow – Smart Leads Dashboard</h1>
       <div className="flex items-center gap-4">
         <span className="text-sm">
           {user?.name} —

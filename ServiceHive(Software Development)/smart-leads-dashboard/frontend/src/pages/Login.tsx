@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-xl shadow w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-green-700 mb-6 text-center">Smart Leads</h1>
+        <h1 className="text-2xl font-bold text-green-700 mb-6 text-center">GigFlow</h1>
         <h2 className="text-lg font-semibold mb-4">Login</h2>
 
         {err && <p className="text-red-500 text-sm mb-3">{err}</p>}
