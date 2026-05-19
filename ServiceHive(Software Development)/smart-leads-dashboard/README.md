@@ -17,6 +17,9 @@ Pursuing MCA from IIIT Vadodara
 - Axios
 - React Router DOM
 - Vite
+- MongoDB Atlas
+- Docker
+- Docker Compose
 
 ### Backend
 - Node.js + Express.js + TypeScript
@@ -62,7 +65,7 @@ Pursuing MCA from IIIT Vadodara
 
 ---
 
-# Setup
+# Docker Desktop Setup
 
 1. Install Docker Desktop
 2. Clone repository
