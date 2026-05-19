@@ -62,4 +62,17 @@ Pursuing MCA from IIIT Vadodara
 
 ---
 
-## Project Structure
+# Setup
+
+1. Install Docker Desktop
+2. Clone repository
+3. Configure .env
+4. Run:
+
+- docker compose up --build
+
+- Frontend:
+- http://localhost
+
+- Backend:
+- http://localhost:5000
