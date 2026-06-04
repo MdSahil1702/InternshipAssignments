@@ -90,3 +90,64 @@ class LRUcache:
             if len(self.cache) > self.capacity:
                 lru_node = self._pop_tail()
                 del self.cache[lru_node.key]
+
+
+
+
+==========================================
+
+## Problem 2: Event Scheduler
+
+### Explanation:
+For can_atten_all:
+I sort events by start time, then check if any even tstarts before teh previous one ends. If an event's start time is less than the previous event end time, there's an overlap. Adjacent events (end==start) are allowed
+
+For min_rooms_required:
+The minimum number of rooms needed equals the maximum number of overlappig events at any point in time. I use a sweep line algorithm with a minheap (priority queue):
+
+1. sort all events by start time
+2. maintain a min-heap of room end times
+3. for each event if the earliest free room is available
+4. otherwise, add a new room
+5. The heap size at any point represents active rooms, the maximum size is our answer
+
+## Code Implementation:
+
+import heapq
+
+def can_attend_all(events):
+    
+    if not events:
+        return True
+    
+    # Sort by start time
+    sorted_events = sorted(events, key=lambda x: x[0])
+    
+    for i in range(1, len(sorted_events)):
+       
+        if sorted_events[i][0] < sorted_events[i-1][1]:
+            return False
+    
+    return True
+
+
+def min_rooms_required(events):
+    if not events:
+        return 0
+    
+    
+    sorted_events = sorted(events, key=lambda x: x[0])
+    rooms = []
+    
+    for start, end in sorted_events:
+   
+        if rooms and rooms[0] <= start:
+            heapq.heappop(rooms)  # Reuse this room
+        
+        # Assign a room (either reused or new)
+        heapq.heappush(rooms, end)
+    
+    return len(rooms)
+
+
+========================================
