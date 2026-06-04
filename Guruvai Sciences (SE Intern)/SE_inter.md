@@ -150,4 +150,65 @@ def min_rooms_required(events):
     return len(rooms)
 
 
+
 ========================================
+
+## Answering the questions
+
+### 1.Time complexity and analysis
+
+**get() & put()**
+- Time Complexity- O(1)
+- Space Complexity- O(size)
+- Explanation:
+
+  Hashmap lookup + pointer manipulation for get()
+
+  Hashmap insert + optional removal for put()
+
+
+**can_attend_all() & min_rooms_required()**
+- Time COmplexity- O(nlogn)
+- Space Complexity- O(n)
+- Explanation:
+
+  Sorting dominates; constant extra space for can_attend_all()
+
+  Sorting + heap operations; heap stores up to n events for min_room_required()
+
+
+### 2.Trade-offs: Why HashMap + Doubly Linked List for LRU Cache?
+
+- HashMap → O(1) access to any node by key
+
+- Doubly Linked List → O(1) insert/remove at any position 
+
+- Singly linked list cost O(n) to find the required node therefore we dont use singly linked list
+
+### 3.Future Proofing: Assigning Specific Room Numbers
+
+- Instead of just counting rooms in a heap, store (end_time, room_name) pairs
+
+- Create a second heap called available_rooms to store room names that are free
+
+- Before assigning a room, check if any rooms are available in the available_rooms heap
+
+- If yes, take the first available room name and reuse it
+
+- If no, create a new room name (Room A, then B, then C...)
+
+- Instead of return len(rooms), return a list of (event, room_name) pairs
+
+- Keep track of original event order using indexes
+
+### 4.Concurrency: Making LRU Cache Thread-Safe(coding implementation python)
+
+- Problem: If two people (threads) use the cache at the same time, they might:
+1. Both try to remove the same node → crash
+2. One reads while another writes → gets wrong data
+3. Both try to add when cache is full → adds two items instead of one
+
+- changes needed:
+1. using RLock() i.e Reentrant Lock for adding a lock
+2. Using lock in every method
+3. Methods like _move_to_head, _remove_node also need with self.lock. This prevents two threads from messing with the linked list simultaneously
